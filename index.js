@@ -9,18 +9,29 @@ for (let i = 0; i < 50; i++) {
 // 这是减法图灵机实现
 
 // 定义初始数据，两段连续的1的个数表示减数和被减数
+
+// 加法数据
+// memory[0] = 1
+// memory[1] = 1
+// memory[2] = 1
+// memory[3] = 1
+// memory[4] = 1
+// memory[5] = 1
+// memory[6] = 1
+
+
+// memory[8] = 1
+// memory[9] = 1
+// memory[10] = 1
+
+
+// 复制所用数据
 memory[0] = 1
 memory[1] = 1
 memory[2] = 1
-memory[3] = 1
-memory[4] = 1
-memory[5] = 1
-memory[6] = 1
 
 
-memory[8] = 1
-memory[9] = 1
-memory[10] = 1
+
 
 let head = 0
 
@@ -42,20 +53,73 @@ let tulingStatus = 1
    若1，写0，转2   // 6是纯左
 */
 
+// let codes = [
+//     { status: 1, r: 1, c: "r", to: 1 },
+//     { status: 1, r: 0, c: "h", to: 2 },
+//     { status: 2, r: 1, c: "w0", to: 3 },
+//     { status: 2, r: 0, c: "r", to: 2 },
+//     { status: 3, r: 0, c: "r", to: 4 },
+//     { status: 4, r: 0, c: "l", to: 5 },
+//     { status: 4, r: 1, c: "l", to: 6 },
+//     { status: 5, r: 0, c: "l", to: 5 },
+//     { status: 5, r: 1, c: "w0", to: 's' },
+//     { status: 6, r: 0, c: "l", to: 6 },
+//     { status: 6, r: 1, c: "w0", to: 2 },
+//     { status: 's', },
+// ]
+
+
+// 加法
+// let codes=[
+//     { status: 1, r: 1, c: "r", to: 1 },
+//     { status: 1, r: 0, c: "r", to: 2 },
+//     { status: 2, r: 1, c: "w0", to: 3 },
+//     { status: 2, r: 0, c: "w0", to: 's' },
+
+
+//     { status: 3, r: 0, c: "l", to: 3 },
+//     { status: 3, r: 1, c: "r", to: 4 },
+//     { status: 4, r: 0, c: "w1", to: 1 },
+//     { status: 's', },
+// ]
+
+
+// 复制
 let codes = [
-    { status: 1, r: 1, c: "r", to: 1 },
-    { status: 1, r: 0, c: "h", to: 2 },
-    { status: 2, r: 1, c: "w0", to: 3 },
-    { status: 2, r: 0, c: "r", to: 2 },
+    { status: 1, r: 1, c: "r", to: 2 },
+    { status: 1, r: 0, c: "r", to: 's' },
+
+    { status: 2, r: 0, c: "r", to: 3 },
+    { status: 2, r: 1, c: "r", to: 3 },
+
     { status: 3, r: 0, c: "r", to: 4 },
-    { status: 4, r: 0, c: "l", to: 5 },
-    { status: 4, r: 1, c: "l", to: 6 },
-    { status: 5, r: 0, c: "l", to: 5 },
-    { status: 5, r: 1, c: "w0", to: 's' },
-    { status: 6, r: 0, c: "l", to: 6 },
-    { status: 6, r: 1, c: "w0", to: 2 },
-    { status: 's', },
+    { status: 3, r: 1, c: "r", to: 4 },
+
+    { status: 4, r: 0, c: "r", to: 5 },
+    { status: 4, r: 1, c: "r", to: 5 },
+
+    { status: 5, r: 0, c: "w1", to: 6 },
+
+    // 左移4次
+    { status: 6, r: 0, c: "l", to: 7 },
+    { status: 6, r: 1, c: "l", to: 7 },
+
+    { status: 7, r: 0, c: "l", to: 8 },
+    { status: 7, r: 1, c: "l", to: 8 },
+
+    { status: 8, r: 0, c: "l", to: 1 },
+    { status: 8, r: 1, c: "l", to: 1 },
+
+
+    
 ]
+
+
+
+
+
+
+
 
 let count = 0
 const app = document.querySelector("#app")
@@ -114,6 +178,6 @@ function main() {
                 break
             }
         }
-    }, 400)
+    }, 300)
 }
 main()
